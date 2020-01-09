@@ -260,4 +260,12 @@ app.get("/yoga",function (req,res) {
 app.get("/profile",function(req,res){
     res.render("profile")
 })
+
+app.get("/user-signin", function(req, res){
+    res.render("signup",{
+
+    });
+    
+    
+});
 app.listen(4000);
