@@ -265,7 +265,26 @@ app.get("/user-signin", function(req, res){
     res.render("signup",{
 
     });
+
+app.get('/',function(req,res){
+    res.render('dashboard')
+});
     
+app.get('/dashboard',function(req,res){
+    res.render('dashboard')
+});
+    
+app.get('/employee',function(req,res){
+    res.render('employee')
+});
+    
+app.get('/orderapproval',function(req,res){
+    res.render('orderapproval')
+});
+    
+app.get('/information',function(req,res){
+    res.render('information')
+});
     
 });
 app.listen(4000);
