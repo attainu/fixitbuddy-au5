@@ -16,5 +16,14 @@
     "hbs": "^4.0.6",
     "mongodb": "^3.4.1",
     "multiparty": "^4.2.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/attainu/fixitbuddy-au5.git"
+  },
+  "bugs": {
+    "url": "https://github.com/attainu/fixitbuddy-au5/issues"
+  },
+  "homepage": "https://github.com/attainu/fixitbuddy-au5#readme"
 }
