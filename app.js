@@ -261,6 +261,15 @@ app.get("/profile",function(req,res){
     res.render("profile")
 })
 
+
+app.get("/Admin", function(req, res){
+    res.render("Admin",{
+
+    });
+    
+    
+});
+
 app.get("/user-signin", function(req, res){
     res.render("signup",{
 
