@@ -1,64 +1,91 @@
-const Admin ={}
-var addAdmin = require("../models/addAdmin.js");
+const addAdmin ={}
+var Admin = require("../models/addAdmin.js");
 
-//-----------------Post for add Admin-------------//
 Admin.create_admin = function(req,res){
-    new addAdmin({
+    var data = {
         adminid:req.body.id,
-    firstName:req.body.firstName,
-    lastName:req.body.lastname,
-    fullName:req.body.fullName,
-    gender:req.body.gender,
-    mobile :req.body.mobile,
-    email:req.body.email,
-    password:req.body.password,
-    })
-    addAdmin.Find(function(err, admin){
+        firstName:req.body.firstName,
+        lastName:req.body.lastname,
+        fullName:req.body.fullName,
+        gender:req.body.gender,
+        mobile :req.body.mobile,
+        email:req.body.email,
+        password:req.body.password,
+    }
+    addAdmin.create(data, function(err, admin){
         if(err)
-        res.send(err)
-        res.json(admin);
+            res.redirect("/Admin")
+        else
+            res.redirect("/user-signin");
     });
 }
 
 //--------------read for admin--------------------//
 Admin.read_admin = function(req, res){
     let id = req.params._id;
-    addAdmin.findById(id, function(err, admin) {
-        if (err)
-            res.send(err)
+    addAdmin.findOne( function(err, admin) {
+        if (admin == null){
+            res.redirect("/Admin")
+        }
+        else{
+            if(req.body.password == result.password){
+                req.session.user = {email: req.body.email}
+                res.redirect("/dashboard")
+            }
+        }
  
-        res.json(admin);
     });
 }
 
 //-----------Update for admin---------------------//
 Admin.update_admin = function(req,res){
-    var conditions ={_id:req.params._id}
+    var data = {
+        newPassword = req.body.newPassword,
+        confirmPassword = req.body.confirmPassword
+    }
     
-    addAdmin.update(conditions , req.body)
-    .then(doc =>{
-        if(!doc) {
-            return  res.status(404).end();}
-            return res.status(200).json(doc)
-        })
-        .catch(err => next(err));
-        
+    addAdmin.updateOne({email: req.session.user.email}, {$set: data}, function(err,result){
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.redirect("/adminprofile")
+        }
+    })
+   
 }
 
 //---------------DELETE for admin--------------------//
-Admin.delete_admin = function(req,res){
-    console.log(req.params._id);
-    let id = req.params._id;
-    addAdmin.remove({
-        _id : id
-    }, function(err,result) {
-        if (err)
-            res.send(err);
-        else
-            res.json(result);	
+addAdmin.delete_admin = function(req,res){
+      
+    var postsIDs = req.params._id
+    Admin.deleteMany({ _id: { $in:postsIDs }},(err, doc) => {
+
+        if (!err) {
+
+            res.redirect('/read_admin');
+
+        }
+
+        
+
     });
+
+
 }
 
+addAdmin.adminprofile=function(req,res){
+    if(req.session.user){
+        res.render("adminprofile",{
+            Admin:req.session.user
+        })
+    }
+}
+
+
+
 module.exports = {
-    Admin:Admin
+    addAdmin:addAdmin
 };
+
+

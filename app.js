@@ -120,6 +120,25 @@ app.get('/information',function(req,res){
     res.render('information')
 });
 
+//------------admin--------------//
+
+var adminSchema = require("./models/addAdmin.js");
+
+
+var user = require("./controller/adminCRUD.js")
+
+app.post("/Admin", user.addAdmin.create_admin);
+app.get("/user-signin", user.addAdmin.read_admin);
+app.get("/adminprofile",user.addAdmin.adminprofile);
+app.get("/update_admin/:_id", user.addAdmin.update_admin);
+app.get("/delete_admin/:_id", user.addAdmin.delete_admin);
+ app.get("/",function(req,res){
+     res.render("dashboard",{
+        
+
+     })
+ })
+
 
 
 app.listen(4000);
