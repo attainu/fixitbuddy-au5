@@ -11,43 +11,36 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Fix-it Buddy</title>
     <style>
-        .carousel-item {
-            height: 65vh;
-            min-height: 350px;
-            background: no-repeat center center scroll;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-
-        body {
-            font-family: 'Titillium Web', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .card:hover {
+         .card:hover {
+             color: whitesmoke;
             cursor: pointer;
         }
 
         .list-group-item:hover {
+            color: white;
             background-color: black;
-            color: whitesmoke;
+            
         }
+       
 
-        a:hover {
-            text-decoration: none;
+        
 
-        }
-
-        a {
-            color: black;
+        
+        
+        body {
+            font-family: 'Titillium Web', sans-serif;
+            overflow-x: hidden;
+            height:700px
         }
 
         footer {
-            width: 100%;
-            position: fixed;
-            bottom: 0px;
+
+       width: 1000px;
+       bottom: 0px;
+       position: relative;
+       margin-left: 0px;
+       margin-bottom: 1px;
+       
         }
 
         ul {
@@ -79,71 +72,47 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto text-dark">
-                    {{!-- <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li> --}}
+                  
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login/Sign Up</a>
+                        <a class="nav-link" href="/read_admin">admin</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <div class="row ml-5 mt-3 ">
+        <div class="col-md-2 mt-5 border rounded p-4">
+            {{!-- <div class="list-group list-group-flush">
+                <a class="list-group-item border-0 mt-1 rounded">DASHBOARD</a>
+            </div> --}}
+            <div class="list-group list-group-flush" id="infoUpdate">
+                <a class="list-group-item border-0 mt-1 rounded">INFORMATION</a>
+            </div>
+            <div class="list-group list-group-flush" id="addressUpdate">
+                <a class="list-group-item border-0 mt-1 rounded">ADDRESS BOOK</a>
+            </div>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item border-0 mt-1 rounded">MY BOOKING</a>
+            </div>
+        </div>
     
-    <div class="row ml-7 mt-3 offset-4  " style="height:500px">
-        <div class="col-md-6 mt-5 border rounded p-4">
-            <h3 class="offset-4">Admin profile</h3><hr>
-            <a href="/update_admin/{{this._id}}"><i class="fa fa-pencil fa-lg  edit" style="margin-left: 470px;" id="adminUpdate"></i></a>
-            <a href="/delete_admin/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-lg " aria-hidden="true"></i></a>
-            {{#if Admin}}
-            Name:<li>{{this.name}}</li>
-            email:<li>{{this.email}}</li>
-            password:<li>{{this.password}}</li>
-            {{/if}}
+    <div class="row ml-7 mt-3 offset-3 mb-5 " style="height:500px;width:900px">
+        <div class="col-md-6 mt-5 border border-primary rounded p-4 shadow">
+            <h3 class="offset-3"><i class="fa fa-user" style="font-size:36px"></i>&nbsp;Admin profile</h3><hr/>
+            
+            <div class="col-md-12 ">
+            <div class="row mt-5"><h5><strong>E-MAIL:</strong>&nbsp;&nbsp;{{loggedInadmin.email}}</h5></div><br/><br/>
+            <div class="row mt-3"><h5><strong>PASSWORD:</strong>&nbsp;&nbsp;{{loggedInadmin.password}}</h5></div>
+            </div>
+            
+           
         </div>
     </div>
-    <div class="col-md-8 mt-5 offset-1" id="adminUpdateBox">
-            <form method="POST" action="/update_admin">
-                
-               
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control-plaintext" id="staticEmail" value="email@example.com">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="currentPassword" class="col-sm-2 col-form-label">Current Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="currentPassword" placeholder="******">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="newPassword" class="col-sm-2 col-form-label">New Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="newPassword" placeholder="******">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="cfNewPassword" class="col-sm-2 col-form-label">Confirm New Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="cfNewPassword" placeholder="******">
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
-            </form>
     
+  
 
-
-    <footer class="py-5 bg-dark w-100">
+    <footer class="py-4 ml-0px bg-dark mt-5 " style="width: 5000px;">
         <ul class="list-group list-group-horizontal-sm offset-9">
             <li>
                 <a class="anc" href="/aboutus">About Us</a>
@@ -170,6 +139,7 @@
 
         <!-- /.container -->
     </footer>
+     
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -180,6 +150,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-<script src="js/profile.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="js/adminupdate.js"></script>
 
 </html>
