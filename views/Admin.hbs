@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Document</title>
 
     <style>
@@ -277,7 +278,7 @@ footer a {
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="/create_admin">
+		<form action="create_admin" method="POST">
 			<h1>Admin Login</h1>
 			<!--<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -285,19 +286,16 @@ footer a {
 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 			</div>-->
 			<span>enter your email and password..</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
+			<input type="email" placeholder="Email" name="email" />
+			<input type="password" placeholder="Password" name="password" />
 			<a href="#">Forgot your password?</a>
-			<button>Login</button>
+			<button onclick="showalert()">Login</button>
+			
 		</form>
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
-			<!--<div class="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button class="ghost" id="signIn">Sign In</button>
-			</div>-->
+			
 			<div class="overlay-panel overlay-right">
 				<h1>Hello, Admin!</h1>
 				<p>Enter your personal details and start as a Admin</p>
