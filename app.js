@@ -256,6 +256,9 @@ app.get("/yoga",function (req,res) {
     })
 })
 
+app.get("/AboutUs",function(req,res){
+    res.render("AboutUs")
+})
 
 app.get("/profile",function(req,res){
     res.render("profile")
@@ -266,7 +269,6 @@ app.get("/Admin", function(req, res){
     res.render("Admin",{
 
     });
-    
     
 });
 
