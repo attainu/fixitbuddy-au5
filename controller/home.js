@@ -43,6 +43,10 @@ Controller.home = function (req, res) {
     })
 }
 
+Controller.aboutus = function (req,res) {
+    res.render("aboutus")
+}
+
 module.exports = {
     Controller : Controller
 }

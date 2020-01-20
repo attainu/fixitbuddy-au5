@@ -277,7 +277,7 @@ footer a {
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="#">
+		<form action="/adminlogin" method="POST">
 			<h1>Admin Login</h1>
 			<!--<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -285,10 +285,9 @@ footer a {
 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 			</div>-->
 			<span>enter your email and password..</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<a href="#">Forgot your password?</a>
-			<button>Login</button>
+			<input type="text" name="username" placeholder="Admin Username" />
+			<input type="password" name="password" placeholder="Admin Password" />
+			<button type="submit">Admin Login</button>
 		</form>
 	</div>
 	<div class="overlay-container">

@@ -39,7 +39,7 @@ Controller.usersignup = function (req, res) {
 
 
 }
-
+console.log(dataArray)
 Controller.otp = function (req, res) {
     console.log("hello post")
 
@@ -83,7 +83,7 @@ Controller.bookedService = function (req, res) {
     Service.findOne({ name: req.body.name }, function (err, service) {
         var arrRadio = req.body.optradio.split(";")
         var num = parseInt(arrRadio[0])
-        var total = num + (0.18 * num) + (0.05 * num)
+        var total = Math.round(num + (0.18 * num))
         console.log(total)
         arrRadio.push(total, service.name)
 
@@ -220,14 +220,14 @@ async function main() {
         port: 465,
         secure: true,
         auth: {
-            user: "ks.singh758@gmail.com",
-            pass: "xxqhxynotxbtlice"
+            user: "officialfixitbuddy@gmail.com",
+            pass: "kpuhfwbdhabnoszt"
         }
     });
     console.log(dataArray)
 
     let info = await transporter.sendMail({
-        from: 'ks.singh758@gmail.com',
+        from: 'officialfixitbuddy@gmail.com',
         to: dataArray.email,
         subject: "Hello ✔",
         text: "Hello User. Welcome to Fix-it Buddy.",
@@ -247,14 +247,14 @@ async function confirmation(name, category, type, cost, sum) {
         port: 465,
         secure: true,
         auth: {
-            user: "ks.singh758@gmail.com",
-            pass: "xxqhxynotxbtlice"
+            user: "officialfixitbuddy@gmail.com",
+            pass: "kpuhfwbdhabnoszt"
         }
     });
 
     console.log(dataArray)
     let info = await transporter.sendMail({
-        from: 'ks.singh758@gmail.com',
+        from: 'officialfixitbuddy@gmail.com',
         to: dataArray.email,
         subject: "Booking Confirmed",
         text: "Your service has been successfully booked.",

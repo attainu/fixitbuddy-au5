@@ -21,8 +21,20 @@
             background-size: cover;
         }
 
+
+
+        h1 {
+            font-weight: 600;
+        }
+
         body {
-            font-family: 'Titillium Web', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+
+
+        }
+
+        .modal-body {
+            background: linear-gradient(to left, #7b4397, #dc2430);
         }
 
         .card:hover {
@@ -70,7 +82,7 @@
         .upbutton {
             width: 3.5rem;
             height: 3.5rem;
-            background-color: #feca57;
+            background-color: #FF4B2B;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -105,11 +117,12 @@
             }
         }
     </style>
+
 </head>
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navv fixed-top" id="mainNav">
         <div class="container">
             {{#if userlogin}}
             <a class="navbar-brand" href="/?userlogin=true"><img src="./logo.png" height="32px"></a>
@@ -129,11 +142,11 @@
                         </a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link" href="/aboutus">About Us</a>
                     </li>
-                    <li class="nav-item">
+                    {{!-- <li class="nav-item">
                         <a class="nav-link" href="#">Services</a>
-                    </li>
+                    </li> --}}
                     {{#if userlogin}}
                     {{!-- <li>
                         <div class="btn-group">
@@ -149,7 +162,15 @@
                     </li> --}}
                     <li class="btn-group dropper">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"><small>Hello {{user.firstname}}</small><br><span>My Account</span>
+                            aria-expanded="false">
+                            {{#if user.photo}}
+                            <img src="{{user.photo}}" height="30px" width="30px" class="rounded-circle">
+                            {{else}}
+                            <img class="rounded-circle"
+                                src="https://sophosnews.files.wordpress.com/2013/08/facebook-silhouette_thumb.jpg"
+                                height="30px" width="30px" alt="new pic">
+                            {{/if}}
+                            <b>{{user.firstname}}</b>
                         </a>
                         <div class=" dropdown-menu ">
                             <a href="/profile" class="dropdown-item" type="button">My Profile</a>
@@ -182,10 +203,14 @@
                 <div class="carousel-item active"
                     style="background-image: url('https://res.cloudinary.com/urbanclap/image/upload/fl_progressive,t_medium_res_template/categories/home_screen_v3/discover/promocards/Web+Luminosity/Ac-Repair_Luminosity_Desktop.jpg')">
                     <div class="carousel-caption d-none d-md-block">
-                        <a href="/ac-repair" class="text-white">
-                            <h3 class="display-4">A.C. Maintenance & Services</h3>
-                            <p class="lead">Get your A.C. fixed within 24 hrs with Fix-it Buddy.</p>
-                        </a>
+                        {{#if userlogin}}
+                        <a href="service?userlogin=true&id=5e1ce2b360c5cf13ec39748b" class="text-white">
+                            {{else}}
+                            <a href="service?id=5e1ce2b360c5cf13ec39748b" class="text-white">
+                                {{/if}}
+                                <h1 class="display-4">A.C. Maintenance & Services</h1>
+                                <p class="lead">Get your A.C. fixed within 24 hrs with Fix-it Buddy.</p>
+                            </a>
                     </div>
                 </div>
 
@@ -193,20 +218,28 @@
                 <div class="carousel-item"
                     style="background-image: url('https://res.cloudinary.com/urbanclap/image/upload/fl_progressive,t_medium_res_template/categories/home_screen_v3/discover/promocards/Web+Luminosity/Professional-Bathroom-Cleaning_Luminosity_Desktop.jpg')">
                     <div class="carousel-caption d-none d-md-block">
-                        <a href="/bathroom-cleaning" class="text-white">
-                            <h3 class="display-4">Best Bathroom Deep Cleaning Service in whole Delhi-NCR</h3>
-                            <p class="lead">Mechanized Equipment & Professional Cleaning solutions.</p>
-                        </a>
+                        {{#if userlogin}}
+                        <a href="service?userlogin=true&id=5e1ce2b360c5cf13ec397483" class="text-white">
+                            {{else}}
+                            <a href="service?id=5e1ce2b360c5cf13ec397483" class="text-white">
+                                {{/if}}
+                                <h3 class="display-4">Best Bathroom Deep Cleaning Service in whole Delhi-NCR</h3>
+                                <p class="lead">Mechanized Equipment & Professional Cleaning solutions.</p>
+                            </a>
                     </div>
                 </div>
                 <!-- Slide Three - Set the background image for this slide in the line below -->
                 <div class="carousel-item text-white"
                     style="background-image: url('https://res.cloudinary.com/urbanclap/image/upload/fl_progressive,t_medium_res_template/categories/home_screen_v3/discover/promocards/Web+Luminosity/yoga-All_Desktop-1.jpg'); ">
                     <div class="carousel-caption d-none d-md-block text-white">
-                        <a href="/fitness" class="text-white">
-                            <h3 class="display-4">Best Fitness Trainers in Delhi-NCR</h3>
-                            <p class="lead">Get 12 sessions in 4 weeks & Train with a certified trainer.</p>
-                        </a>
+                        {{#if userlogin}}
+                        <a href="userlogin=true&service?id=5e1ce2b360c5cf13ec39748f" class="text-white">
+                            {{else}}
+                            <a href="service?id=5e1ce2b360c5cf13ec39748f" class="text-white">
+                                {{/if}}
+                                <h3 class="display-4">Best Fitness Trainers in Delhi-NCR</h3>
+                                <p class="lead">Get 12 sessions in 4 weeks & Train with a certified trainer.</p>
+                            </a>
                     </div>
                 </div>
             </div>
@@ -316,7 +349,7 @@
 
             <!-- /.row -->
 
-            
+
 
 
 
@@ -433,9 +466,9 @@
 
     </div>
     <!-- /.container -->
-    <div class="upbutton bounce-1">
-        <a href="#top"><i class="fa fa-arrow-up fa-w-14"></i></a>
-    </div>
+    <a href="#top" class="upbutton bounce-1">
+        <i class="fa fa-arrow-up fa-w-14"></i>
+    </a>
 
 
 
@@ -452,11 +485,13 @@
                 <a class="anc" href="/contactus">Contact Us</a>
             </li>
             <li class=" ml-3">
-                <a class="anc" href="/admin">Admin Panel</a>
+                {{#unless userlogin}}
+                <a class="anc" href="/adminpanel">Admin Panel</a>
+                {{/unless}}
             </li>
         </ul>
         <hr />
-        <p class="m-0 mr-5 text-center text-white">Copyright &copy; Fix-it Buddy 2019</p>
+        <p class="m-0 mr-5 text-center anc">Copyright &copy; Fix-it Buddy 2019</p>
         <ul class="list-group list-group-horizontal-sm offset-5 mt-2">
             <li class="ml-5"><a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram fa-lg"
                         style="color: white;"></i></a></li>
@@ -484,7 +519,8 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 <script>
-    
+
+
     $("#cleaning").click(function () {
         $("#cleaningModal").modal("show")
 
@@ -501,6 +537,9 @@
         $("#fitnessModal").modal("show")
 
     })
+
+
+
 </script>
 
 </html>

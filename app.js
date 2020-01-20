@@ -63,8 +63,12 @@ const home = require("./controller/home.js")
 
 const user = require("./controller/user.js")
 
+const admin = require("./controller/fixitadmin.js")
+
 
 app.get("/", home.Controller.home)
+
+app.get("/aboutus", home.Controller.aboutus)
 
 app.get("/service", service.Controller.service)
 
@@ -90,13 +94,14 @@ app.post("/updateuserinfo", user.Controller.updateuserinfo)
 app.get("/logout", user.Controller.logout)
 
 /////////////////////////////Admin Routes///////////////////////////
-app.get("/Admin", function(req, res){
-    res.render("Admin",{
 
-    });
-    
-    
-});
+app.get("/adminpanel",admin.Controller.adminpanel)
+
+app.post("/adminlogin",admin.Controller.adminlogin)
+
+app.get("/admin", admin.Controller.admin)
+
+app.get("/adminlogout", admin.Controller.adminlogout)
 
 app.get("/user-signin", function(req, res){
     res.render("signup",{

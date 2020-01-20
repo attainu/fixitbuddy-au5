@@ -22,8 +22,9 @@
         }
 
         body {
-            font-family: 'Titillium Web', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
+
         }
 
         .card:hover {
@@ -67,8 +68,24 @@
             text-decoration: none;
         }
 
+        .acc:hover {
+            color: black !important;
+        }
+
         .main {
             min-height: 80vh;
+        }
+
+        #infoBox {
+            background-color: white;
+        }
+
+        #infoUpdateBox {
+            background-color: white;
+        }
+
+        #addressUpdateBox {
+            background-color: white;
         }
     </style>
 </head>
@@ -90,18 +107,27 @@
                         </a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link acc" href="#">About Us</a>
                     </li>
-                    <li class="nav-item">
+                    {{!-- <li class="nav-item">
                         <a class="nav-link" href="#">Services</a>
-                    </li>
+                    </li> --}}
                     <li class="btn-group dropper">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">My Account
+
+                        <a class="nav-link dropdown-toggle acc" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            {{#if user.photo}}
+                            <img src="{{user.photo}}" height="30px" width="30px" class="rounded-circle">
+                            {{else}}
+                            <img class="rounded-circle"
+                                src="https://sophosnews.files.wordpress.com/2013/08/facebook-silhouette_thumb.jpg"
+                                height="30px" width="30px" alt="new pic">
+                            {{/if}}
+                            <b>{{user.firstname}}</b>
                         </a>
                         <div class=" dropdown-menu ">
-                            <a href="/profile" class="dropdown-item" type="button">My Profile</a>
-                            <a href="/logout" class="dropdown-item" type="button">Logout</a>
+                            <a href="/profile" class="dropdown-item acc" type="button">My Profile</a>
+                            <a href="/logout" class="dropdown-item acc" type="button">Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -130,28 +156,73 @@
             </div>
             <div class="col-md-8 mt-5 offset-1 border rounded p-3" id="infoBox">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3 mt-4">
                         {{#if user.photo}}
-                        <img src="{{user.photo}}" height="100px" width="100px">
+                        <img src="{{user.photo}}" height="145px" width="150px" hspace="20" class="rounded-circle">
                         {{else}}
                         <img class="rounded-circle"
                             src="https://sophosnews.files.wordpress.com/2013/08/facebook-silhouette_thumb.jpg"
-                            height="200px" width="200px" alt="new pic">
+                            height="145px" width="150px" alt="new pic">
                         {{/if}}
                     </div>
-                    <div class="col-md-8">
-                        <p>FIRST NAME: <span>{{user.firstname}}</span></p>
-                        <p>LAST NAME: <span>{{user.lastname}}</span></p>
-                        <p>EMAIL: <span>{{user.email}}</span></p>
-                        <p>CONTACT NO. : <span>{{user.mobile}}</span></p>
+                    <div class="col-md-9">
+                        <div class="row mt-3 mr-5 border rounded p-2 bg-white border-primary">
+                            <div class="col-md-3">
+                                <b>FIRST NAME:</b>
+                            </div>
+                            <div class="col-md-7">
+                                {{user.firstname}}
+                            </div>
+                        </div>
+                        <div class="row mt-3 mr-5 border rounded p-2 bg-white border-primary">
+                            <div class="col-md-3">
+                                <b>LAST NAME:</b>
+                            </div>
+                            <div class="col-md-7">
+                                {{user.lastname}}
+                            </div>
+                        </div>
+                        <div class="row mt-3 mr-5 border rounded p-2 bg-white border-primary">
+                            <div class="col-md-3">
+                                <b>EMAIL:</b>
+                            </div>
+                            <div class="col--md-7">
+                                {{user.email}}
+                            </div>
+                        </div>
+                        <div class="row mt-3 mr-5 border rounded p-2 bg-white border-primary">
+                            <div class="col-md-3">
+                                <b>CONTACT NO. :</b>
+                            </div>
+                            <div class="col-md-7">
+                                {{user.mobile}}
+                            </div>
+                        </div>
+                        <div class="row mt-3 mr-5 border rounded p-2 bg-white border-primary">
+                            <div class="col-md-3">
+                                <b>ADDRESS:</b>
+                            </div>
+                            <div class="col-md-7">
+                                <span>{{#each user.inputAddress}}{{#if @last}}{{this}}{{/if}}{{/each}}
+                                    {{#each user.inputAddress2}}{{#if @last}}{{this}}{{/if}}{{/each}}
+                                    {{#each user.inputCity}}{{#if @last}}{{this}}{{/if}}{{/each}}
+                                    {{#each user.inputState}}{{#if @last}}{{this}}{{/if}}{{/each}}
+                                    {{#each user.inputZip}}{{#if @last}}{{this}}{{/if}}{{/each}}
+                                </span>
+                            </div>
+                        </div>
+                        {{!-- <p><b>FIRST NAME:</b> <span>{{user.firstname}}</span></p>
+                        <p><b>LAST NAME:</b> <span>{{user.lastname}}</span></p>
+                        <p><b>EMAIL:</b> <span>{{user.email}}</span></p>
+                        <p><b>CONTACT NO. :</b> <span>{{user.mobile}}</span></p>
 
 
-                        <p>ADDRESS: <span>{{#each user.inputAddress}}{{#if @last}}{{this}}{{/if}}{{/each}}
+                        <p><b>ADDRESS:</b> <span>{{#each user.inputAddress}}{{#if @last}}{{this}}{{/if}}{{/each}}
                                 {{#each user.inputAddress2}}{{#if @last}}{{this}}{{/if}}{{/each}}
                                 {{#each user.inputCity}}{{#if @last}}{{this}}{{/if}}{{/each}}
                                 {{#each user.inputState}}{{#if @last}}{{this}}{{/if}}{{/each}}
                                 {{#each user.inputZip}}{{#if @last}}{{this}}{{/if}}{{/each}}
-                            </span></p>
+                            </span></p> --}}
                     </div>
                 </div>
             </div>
@@ -281,8 +352,8 @@
                         <ul class="list-group">
                             <li class="list-group-item text-center"><b>Invoice</b></li>
                             <li class="list-group-item">Service Cost: <b>{{this.[0]}}</b> </li>
-                            <li class="list-group-item">GST: <b>18%</b></li>
-                            <li class="list-group-item">VAT: <b>5%</b></li>
+                            <li class="list-group-item">SGST: <b>9%</b></li>
+                            <li class="list-group-item">CGST: <b>9%</b></li>
                             <li class="list-group-item list-group-item-primary">Total amount to Paid :
                                 <b>{{this.[3]}}</b> </li>
                         </ul>
@@ -307,9 +378,7 @@
             <li class=" ml-3">
                 <a class="anc" href="/contactus">Contact Us</a>
             </li>
-            <li class=" ml-3">
-                <a class="anc" href="/admin">Admin Panel</a>
-            </li>
+
         </ul>
         <hr />
         <p class="m-0 mr-5 text-center text-white">Copyright &copy; Fix-it Buddy 2019</p>
