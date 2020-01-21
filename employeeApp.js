@@ -22,10 +22,21 @@ var employeeSchema = require("./models/addemployee");
 
 var user = require("./controllers/emplyCRUD.js")
 
-app.post("/read-employee/:_id", user.Employee.read_employee);
-app.post("/create-employee", user.Employee.create_employee);
-app.post("/update-employee/:_id", user.Employee.update_employee);
-app.post("/delete-employee/:_id", user.Employee.delete_employee);
+app.get("/create_details", user.Employee.create_details);
+
+app.get("/read-employee", user.Employee.read_employee);
+
+app.get("/update/:_id", user.Employee.create_employee);
+
+app.post("/create",user.Employee.create)
+app.get("/delete_employee/:_id", user.Employee.delete_employee);
+
+
+app.get("/",function(req,res){
+   
+    
+    res.render("dashboard")
+}),
 
 
 
