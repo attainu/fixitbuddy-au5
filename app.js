@@ -91,6 +91,8 @@ app.post("/updateAddress", user.Controller.updateAddress)
 
 app.post("/updateuserinfo", user.Controller.updateuserinfo)
 
+// app.post("/delete", user.Controller.delete)
+
 app.get("/logout", user.Controller.logout)
 
 /////////////////////////////Admin Routes///////////////////////////

@@ -48,4 +48,6 @@ $(document).ready(function() {
             $("#profileButton").attr("disabled", true).css('opacity', 0.5);
         }
     })
+
+    
 });

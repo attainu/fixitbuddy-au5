@@ -1,4 +1,5 @@
 const Controller = {}
+
 const Service = require("../models/Service")
 const User = require("../models/User")
 const nodemailer = require("nodemailer");
@@ -204,6 +205,27 @@ Controller.updateuserinfo = function (req, res) {
         }
     })
 }
+
+// Controller.delete = function (req,res) {
+    
+//     // var data = {
+//     //     cost : req.body.cost,
+//     //     category : req.body.category,
+//     //     product : req.body.product,
+//     //     totalCost : req.body.totalCost,
+//     //     serviceName : req.body.serviceName
+//     // }
+//     User.findOneAndUpdate({email:req.body.email},{$pull:{"price.$.0":{"cost" : req.body.cost
+//     }}},function(err,result){
+//         if(err){
+//             console.log(err)
+//         }
+//         else{
+//             res.redirect("/profile?updated=true")
+//         }
+//     })
+
+// }
 
 Controller.logout = function (req, res) {
     req.session.destroy();

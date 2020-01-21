@@ -96,6 +96,11 @@
             animation-iteration-count: infinite;
 
         }
+        .upbutton:hover{
+            cursor: pointer;
+            color: white;
+        }
+
 
         .bounce-1 {
 
@@ -109,7 +114,7 @@
             }
 
             50% {
-                transform: translateY(-30px);
+                transform: translateY(-20px);
             }
 
             100% {
@@ -233,7 +238,7 @@
                     style="background-image: url('https://res.cloudinary.com/urbanclap/image/upload/fl_progressive,t_medium_res_template/categories/home_screen_v3/discover/promocards/Web+Luminosity/yoga-All_Desktop-1.jpg'); ">
                     <div class="carousel-caption d-none d-md-block text-white">
                         {{#if userlogin}}
-                        <a href="userlogin=true&service?id=5e1ce2b360c5cf13ec39748f" class="text-white">
+                        <a href="service?userlogin=true&id=5e1ce2b360c5cf13ec39748f" class="text-white">
                             {{else}}
                             <a href="service?id=5e1ce2b360c5cf13ec39748f" class="text-white">
                                 {{/if}}

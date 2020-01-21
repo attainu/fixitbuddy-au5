@@ -87,6 +87,10 @@
         #addressUpdateBox {
             background-color: white;
         }
+
+        .ico:hover {
+            color: #FF4B2B !important;
+        }
     </style>
 </head>
 
@@ -330,8 +334,19 @@
             <div class="col-md-8 mt-5 offset-1 border roundeed border-primary p-3 bg-light" id="myBookingBox">
                 <h4 class="text-center">Current Bookings</h4>
                 {{#each user.price}}
+
+
                 <div class="row offset-1 mt-4">
                     <div class="col-md-7 border rounded p-2 bg-white border-primary">
+                        {{!-- <form method="POST" action="/delete"></form>
+                            <input type="hidden" value="{{email}}" name="email" id="_id-{{@index}}">
+                            <input type="hidden" id="cost-{{@index}}" name="cost" value="{{this.[0]}}">
+                            <input type="hidden" id="category-{{@index}}" name="category" value="{{this.[1]}}">
+                            <input type="hidden" id="product-{{@index}}" name="product" value="{{this.[2]}}">
+                            <input type="hidden" id="totalCost-{{@index}}" name="totalCost" value="{{this.[3]}}">
+                            <input type="hidden" id="serviceName-{{@index}}" name="serviceName" value="{{this.[4]}}"> --}}
+                        
+                        {{!-- <button type="submit"><a class="delete" class="ico"><i class="fa fa-trash-o fa-lg"></i> Delete Booking</a></button> --}}
                         <span class="offset-md-4 badge badge-info badge-pill">{{this.[4]}}</span>
 
                         <ol class="list-group mt-4">
@@ -348,6 +363,7 @@
                             </li>
                         </ol>
                     </div>
+                    {{!-- </form> --}}
                     <div class="col-md-3 border rounded p-2 bg-white border-primary">
                         <ul class="list-group">
                             <li class="list-group-item text-center"><b>Invoice</b></li>
