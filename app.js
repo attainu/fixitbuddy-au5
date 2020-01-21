@@ -103,57 +103,57 @@ app.get("/admin", admin.Controller.admin)
 
 app.get("/adminlogout", admin.Controller.adminlogout)
 
-app.get("/user-signin", function(req, res){
-    res.render("signup",{
+// app.get("/user-signin", function(req, res){
+//     res.render("signup",{
 
-    });
-})
+//     });
+// })
     
-app.get('/dashboard',function(req,res){
-    res.render('dashboard')
-});
+// app.get('/dashboard',function(req,res){
+//     res.render('dashboard')
+// });
     
-app.get('/employee',function(req,res){
-    res.render('employee')
-});
+// app.get('/employee',function(req,res){
+//     res.render('employee')
+// });
     
-app.get('/orderapproval',function(req,res){
-    res.render('orderapproval')
-});
+// app.get('/orderapproval',function(req,res){
+//     res.render('orderapproval')
+// });
     
-app.get('/information',function(req,res){
-    res.render('information')
-});
+// app.get('/information',function(req,res){
+//     res.render('information')
+// });
 
-//------------admin--------------//
+// //------------admin--------------//
 
-var adminSchema = require("./models/addAdmin.js");
-
-
-var admin = require("./controller/adminCRUD.js")
-
-app.get("/create",admin.addAdmin.create);
-app.post("/create_admin",admin.addAdmin.create_admin)
-app.get("/read_admin",admin.addAdmin.read_admin)
-app.get("/adminprofile",admin.addAdmin.adminprofile)
-
-app.get("/logout",admin.addAdmin.logout)
-
-//-----------------employee-------------//
-
-var employeeSchema = require("./models/addemployee.js");
+// var adminSchema = require("./models/addAdmin.js");
 
 
-var employees = require("./controller/emplyCRUD.js")
+// var admin = require("./controller/adminCRUD.js")
 
-app.get("/create_details", employees.Employee.create_details);
+// app.get("/create",admin.addAdmin.create);
+// app.post("/create_admin",admin.addAdmin.create_admin)
+// app.get("/read_admin",admin.addAdmin.read_admin)
+// app.get("/adminprofile",admin.addAdmin.adminprofile)
 
-app.get("/read-employee", employees.Employee.read_employee);
+// app.get("/logout",admin.addAdmin.logout)
 
-app.get("/update/:_id", employees.Employee.create_employee);
+// //-----------------employee-------------//
 
-app.post("/create",employees.Employee.create)
-app.get("/delete_employee/:_id", employees.Employee.delete_employee);
+// var employeeSchema = require("./models/addemployee.js");
+
+
+// var employees = require("./controller/emplyCRUD.js")
+
+// app.get("/create_details", employees.Employee.create_details);
+
+// app.get("/read-employee", employees.Employee.read_employee);
+
+// app.get("/update/:_id", employees.Employee.create_employee);
+
+// app.post("/create",employees.Employee.create)
+// app.get("/delete_employee/:_id", employees.Employee.delete_employee);
 
 
 
