@@ -125,6 +125,36 @@ app.get('/information',function(req,res){
     res.render('information')
 });
 
+//------------admin--------------//
+
+var adminSchema = require("./models/addAdmin.js");
+
+
+var admin = require("./controller/adminCRUD.js")
+
+app.get("/create",admin.addAdmin.create);
+app.post("/create_admin",admin.addAdmin.create_admin)
+app.get("/read_admin",admin.addAdmin.read_admin)
+app.get("/adminprofile",admin.addAdmin.adminprofile)
+
+app.get("/logout",admin.addAdmin.logout)
+
+//-----------------employee-------------//
+
+var employeeSchema = require("./models/addemployee.js");
+
+
+var employees = require("./controller/emplyCRUD.js")
+
+app.get("/create_details", employees.Employee.create_details);
+
+app.get("/read-employee", employees.Employee.read_employee);
+
+app.get("/update/:_id", employees.Employee.create_employee);
+
+app.post("/create",employees.Employee.create)
+app.get("/delete_employee/:_id", employees.Employee.delete_employee);
+
 
 
 app.listen(4000);
