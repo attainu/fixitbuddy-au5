@@ -93,6 +93,7 @@ $(document).ready(function() {
     $('#priceTable tr').find('th:last, td:last').hide();
 
     $("#tableSelect tr").click(function () {
+        $("#abutton").attr("href","#myModal")
         $("#bookServiceButton").removeAttr("disabled")
     })
 

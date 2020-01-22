@@ -22,6 +22,14 @@ Controller.adminlogin = function (req,res) {
     })
 }
 
+Controller.adminmiddle = function (req, res, next) {
+    if (req.session.admin) {
+        next();
+    } else {
+        res.redirect("/")
+    }
+}
+
 Controller.admin = function(req,res){
     Admin.findOne({username:req.session.admin.username},function (err,result) {
         User.find({},function (err,results) {
@@ -31,10 +39,6 @@ Controller.admin = function(req,res){
                 
         })
       })
-        
-        
-
-        
     })
 }
 

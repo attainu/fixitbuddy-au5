@@ -12,8 +12,9 @@ signInButton.addEventListener('click', () => {
 
 
 $(document).ready(function () {
-
-    $("#otpG").hide()
+    console.log("this")
+    $('#toast').toast('show');
+    // $("#otpG").hide()
     var firstname = $("#firstname").val()
     var lastname = $("#lastname").val()
     var email = $("#email").val()
@@ -39,15 +40,15 @@ $(document).ready(function () {
         }
     })
     
-        $("#submitButton").click(function () {
-            if (firstname.length > 0 && lastname.length > 0 && email.length > 0 && mobile.length > 0 && mobile.length == 10 && pwd.length>=8 && cfpwd.length>=8){
-            $("signupHide").hide()
-            $("#otpG").show()
-            }
-        })
+        // $("#submitButton").click(function () {
+        //     if (firstname.length > 0 && lastname.length > 0 && email.length > 0 && mobile.length > 0 && mobile.length == 10 && pwd.length>=8 && cfpwd.length>=8){
+        //     $("signupHide").hide()
+        //     $("#otpG").show()
+        //     }
+        // })
     
     
-    
+       
 
 
 

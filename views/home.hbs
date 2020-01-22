@@ -96,7 +96,8 @@
             animation-iteration-count: infinite;
 
         }
-        .upbutton:hover{
+
+        .upbutton:hover {
             cursor: pointer;
             color: white;
         }
@@ -146,25 +147,18 @@
                             <span class="sr-only">(current)</span>
                         </a>
                     </li> --}}
+                    {{#if userlogin}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/aboutus?userlogin=true">About Us</a>
+                    </li>
+                    {{else}}
                     <li class="nav-item">
                         <a class="nav-link" href="/aboutus">About Us</a>
                     </li>
-                    {{!-- <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
-                    </li> --}}
+                    {{/if}}
+
                     {{#if userlogin}}
-                    {{!-- <li>
-                        <div class="btn-group">
-                            <a href="#" class="btn-md btn-basic dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                My Account
-                            </a>
-                            <div class=" dropdown-menu dropdown-menu-right">
-                                <a href="/profile" class="dropdown-item" type="button">My Profile</a>
-                                <a href="/logout" class="dropdown-item" type="button">Logout</a>
-                            </div>
-                        </div>
-                    </li> --}}
+
                     <li class="btn-group dropper">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -483,9 +477,15 @@
 
     <footer class="py-5 bg-dark w-100">
         <ul class="list-group list-group-horizontal-sm offset-9">
-            <li>
+            {{#if userlogin}}
+            <li class="ml-3">
+                <a class="anc" href="/aboutus?userlogin=true">About Us</a>
+            </li>
+            {{else}}
+            <li class="ml-3">
                 <a class="anc" href="/aboutus">About Us</a>
             </li>
+            {{/if}}
             <li class=" ml-3">
                 <a class="anc" href="/contactus">Contact Us</a>
             </li>

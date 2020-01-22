@@ -65,8 +65,41 @@ const home = require("./controller/home.js")
 
 const user = require("./controller/user.js")
 
+const admin = require("./controller/fixitadmin.js")
 
+/////////////////////////////Admin Routes///////////////////////////
+// app.use(user.Controller.middle)
+
+app.get("/adminpanel",admin.Controller.adminpanel)
+
+app.post("/adminlogin",admin.Controller.adminlogin)
+
+app.use("/admin", admin.Controller.adminmiddle)
+
+app.use("/admin", (req, res, next) => {
+    res.set(
+      "Cache-Control",
+      "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
+    );
+    next();
+  })
+
+app.get("/admin", admin.Controller.admin)
+
+app.use("/adminlogout", admin.Controller.adminmiddle)
+
+app.get("/adminlogout", admin.Controller.adminlogout)
+
+    
+
+
+
+
+
+///////////////User Routes ////////////////////
 app.get("/", home.Controller.home)
+
+app.get("/aboutus", home.Controller.aboutus);
 
 app.get("/service", service.Controller.service)
 
@@ -75,13 +108,24 @@ app.get("/signuplogin", user.Controller.signuplogin )
 
 app.post("/usersignup", user.Controller.usersignup)
 
-app.post("/otp", user.Controller.otp)
+app.get("/otp", user.Controller.otp)
+
+app.post("/userotp", user.Controller.userotp)
 
 app.post("/userlogin", user.Controller.userlogin)
 
 app.post("/bookedService", user.Controller.bookedService)
 
-// app.use(user.Controller.middle)
+app.use(user.Controller.middle)
+
+// It'll prevent to use home route by back button when user logout
+app.use( (req, res, next) => {
+    res.set(
+      "Cache-Control",
+      "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
+    );
+    next();
+  })
 
 app.get("/profile", user.Controller.profile)
 
@@ -89,28 +133,10 @@ app.post("/updateAddress", user.Controller.updateAddress)
 
 app.post("/updateuserinfo", user.Controller.updateuserinfo)
 
-// app.post("/delete", user.Controller.delete)
+app.post("/deleteBooking", user.Controller.deleteBooking)
 
 app.get("/logout", user.Controller.logout)
 
-/////////////////////////////Admin Routes///////////////////////////
-app.get("/Admin", function(req, res){
-    res.render("Admin",{
-
-    });
-    
-    
-});
-
-app.get("/user-signin", function(req, res){
-    res.render("signup",{
-
-    });
-})
-    
-app.get("/AboutUs", function(req, res){
-    res.render("AboutUs")
-});
 
 app.get('/dashboard',function(req,res){
     res.render('dashboard')

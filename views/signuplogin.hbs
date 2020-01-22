@@ -6,7 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
-
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<style>
 		@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
@@ -112,7 +113,7 @@
 			overflow: hidden;
 			width: 768px;
 			max-width: 100%;
-			min-height: 480px;
+			min-height: 550px;
 		}
 
 		.form-container {
@@ -281,6 +282,23 @@
 </head>
 
 <body>
+	{{#if alreadyexist}}
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>User Already Exists!</strong> Kindly register with new E-mail ID.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/if}}
+	{{#if invaliduser}}
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>Invalid User!</strong> You're not a registered user. Kindly register your account.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/if}}
+
 
 	<div class="container" id="container">
 		<div class="form-container sign-up-container" id="signupHide">
@@ -288,18 +306,23 @@
 				<h1>Create Account</h1>
 
 				<span>or use your email for registration</span>
-				<input type="text" placeholder="Enter First Name" name="firstname" id="firstname" required pattern="[A-Za-z]{1,32}" maxlength="15"/>
-				<input type="text" placeholder="Enter Last Name" name="lastname" id="lastname" required pattern="[A-Za-z]{1,32}" maxlength="15"/>
-				<input type="email" placeholder="Enter Email" name="email" id="email" required/>
-				<input type="text" placeholder="Enter Contact Number" name="mobile" id="mobile" required pattern="[789][0-9]{9}"/>
-				<input type="password" placeholder="Enter Password" name="password" id="password" required pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/>
-				<input type="password" placeholder="Enter Password Again" name="cfpassword" id="cfpassword" required pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/>
+				<input type="text" placeholder="Enter First Name" name="firstname" id="firstname" required
+					pattern="[A-Za-z]{1,32}" maxlength="15" />
+				<input type="text" placeholder="Enter Last Name" name="lastname" id="lastname" required
+					pattern="[A-Za-z]{1,32}" maxlength="15" />
+				<input type="email" placeholder="Enter Email" name="email" id="email" required />
+				<input type="text" placeholder="Enter Contact Number" name="mobile" id="mobile" required
+					pattern="[789][0-9]{9}" />
+				<input type="password" placeholder="Enter Password" name="password" id="password" required
+					pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" />
+				<input type="password" placeholder="Enter Password Again" name="cfpassword" id="cfpassword" required
+					pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" />
 
 				<button type="submit" id="submitButton" disabled>Sign Up</button>
 			</form>
 		</div>
 
-		<div class="form-container sign-up-container" id="otpG">
+		{{!-- <div class="form-container sign-up-container" id="otpG">
 			<form action="/otp" method="POST">
 				<h1>Email Confirmation:</h1>
 
@@ -307,9 +330,24 @@
 				<input type="number" placeholder="Enter OTP" name="otp" id="otp" />
 				<button type="submit" id="otpButton">Confirm</button>
 			</form>
-		</div>
+		</div> --}}
 		<div class="form-container sign-in-container">
-
+			{{#if wrongpassword}}
+			<small class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Wrong Password!</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</small>
+			{{/if}}
+			{{#if updatedPassword}}
+			<small class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Password Updated!</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</small>
+			{{/if}}
 			<form action="/userlogin" method="POST">
 				<a href="/"><img src="./logo.png" height="64px"></a>
 				<h1>Login</h1>
@@ -321,6 +359,7 @@
 				<span>or use your account</span>
 				<input type="email" name="email" placeholder="Enter Email" />
 				<input type="password" name="password" placeholder="Enter Password" />
+
 				<a href="#">Forgot your password?</a>
 				<button type="submit">Login</button>
 			</form>
@@ -340,8 +379,16 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	
 	<script src="js/signuplogin.js"></script>
 
 

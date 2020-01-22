@@ -49,5 +49,10 @@ $(document).ready(function() {
         }
     })
 
-    
+    $('#toast').toast('show');
+
+    $("#modalBtn").click(function () {
+        $("#target").submit();
+    })
+
 });
