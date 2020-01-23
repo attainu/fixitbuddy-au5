@@ -1,30 +1,15 @@
 const mongoose = require("mongoose");
 const adminSchema = new mongoose.Schema({
-    id:{
-        type: Number,
-    },
-
-    firstname:{
-        type: String,
-        required: 'This field is required',
-    },
-    lastname:{
-        type: String,
-    },
-    Fullname:{
-        type:String, required:true, unique: true,
-    },
-    gender:{
-        type: String,
-    },
-    mobile:{
-        type:Number, required: true,
-    },
+    
     email:{
         type:String, required: true,
+        
     },
+
     password:{
         type:String, required: true,
+        
+        
     },
    
 
@@ -36,5 +21,5 @@ adminSchema.path('email').validate((val) => {
     return emailRegex.test(val);
 }, 'Invalid e-mail.');
 
-mongoose.model('Admin', adminSchema);
+var Admin=mongoose.model('Admin', adminSchema);
 module.exports = Admin;

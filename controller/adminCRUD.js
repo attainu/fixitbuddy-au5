@@ -1,64 +1,118 @@
-const Admin ={}
-var addAdmin = require("../models/addAdmin.js");
+const addAdmin ={}
+var Admin = require("../models/addAdmin.js");
 
-//-----------------Post for add Admin-------------//
-Admin.create_admin = function(req,res){
-    new addAdmin({
-        adminid:req.body.id,
-    firstName:req.body.firstName,
-    lastName:req.body.lastname,
-    fullName:req.body.fullName,
-    gender:req.body.gender,
-    mobile :req.body.mobile,
-    email:req.body.email,
-    password:req.body.password,
+addAdmin.create_admin = function(req,res){
+    const admin = new Admin({
+         email:req.body.email,
+         password:req.body.password
     })
-    addAdmin.Find(function(err, admin){
-        if(err)
-        res.send(err)
-        res.json(admin);
-    });
+    req.session.admin = admin
+    Admin.insertMany(admin,function(err,result){
+
+        if(err) throw err;
+
+        console.log(result)
+        res.redirect('/read_admin')
+
+    })
 }
 
-//--------------read for admin--------------------//
-Admin.read_admin = function(req, res){
-    let id = req.params._id;
-    addAdmin.findById(id, function(err, admin) {
-        if (err)
-            res.send(err)
- 
-        res.json(admin);
-    });
+addAdmin.create = function(req,res){
+    res.render("Admin",{
+       
+        
+    })
 }
+
+addAdmin.read_admin = function(req,res){
+   
+    
+    Admin.find(function(err,admin){
+        
+            if(!req.session.admin){
+                
+                res.redirect("create?invaidDetails")
+               
+            }
+            else{
+            if(req.session.admin.email=="fixitbuddy@gmail.com" && req.session.admin.password=="fixit"){
+                console.log("logged in successfully!!!")
+                res.render("dashboard",{
+                
+                })
+             
+        }
+       
+        else{
+            res.redirect("/create?invalidDetails=True")
+        }
+    } 
+        })
+
+    }
+    
+        
 
 //-----------Update for admin---------------------//
-Admin.update_admin = function(req,res){
-    var conditions ={_id:req.params._id}
-    
-    addAdmin.update(conditions , req.body)
-    .then(doc =>{
-        if(!doc) {
-            return  res.status(404).end();}
-            return res.status(200).json(doc)
-        })
-        .catch(err => next(err));
-        
+addAdmin.update_admin = function(req,res){
+    var data = {
+        email:req.body.email,
+        newPassword : req.body.newPassword,
+        confirmPassword : req.body.confirmPassword
+    }
+   
+    Admin.updateOne({email: req.session.admin.email}, {$set: data}, function(err,admin){
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.redirect("/adminprofile")
+        }
+    })
+   
 }
 
 //---------------DELETE for admin--------------------//
-Admin.delete_admin = function(req,res){
-    console.log(req.params._id);
-    let id = req.params._id;
-    addAdmin.remove({
-        _id : id
-    }, function(err,result) {
-        if (err)
-            res.send(err);
-        else
-            res.json(result);	
+addAdmin.delete_admin = function(req,res){
+      
+    var postsIDs = req.params._id
+    Admin.deleteMany({ _id: { $in:postsIDs }},(err, doc) => {
+
+        if (!err) {
+
+            res.redirect('/read_admin');
+
+        }
+
+        
+
     });
+
+
 }
 
+addAdmin.adminprofile=function(req,res){
+    if(req.session.admin){
+        res.render("adminprofile",{
+            loggedInadmin:req.session.admin,
+            
+            
+        })
+    }
+    else{
+        res.redirect("/create")
+    }
+}
+addAdmin.logout = function (req, res) {
+    req.session.destroy();
+    res.redirect("/create")
+    console.log("logged out successfully!!!")
+}
+
+
+
 module.exports = {
-    Admin:Admin
+    addAdmin:addAdmin
 };
+
+

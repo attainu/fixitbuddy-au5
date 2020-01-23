@@ -1,5 +1,7 @@
 $(document).ready(function() {
-    
+    $('#tableSelect tr').click(function() {
+        $(this).find('td input:radio').prop('checked', true);
+    })
 
 
     $("#feature1").click(function() {
@@ -90,7 +92,17 @@ $(document).ready(function() {
 
     $('#priceTable tr').find('th:last, td:last').hide();
 
-    $(".radio").click(function () {
+    $("#tableSelect tr").click(function () {
+        $("#abutton").attr("href","#myModal")
         $("#bookServiceButton").removeAttr("disabled")
+    })
+
+    // $("#bookServiceButton").click(function () {
+    //     $("#myModal").show()
+
+    // })
+
+    $("#modalBtn").click(function () {
+        $("#target").submit();
     })
 });

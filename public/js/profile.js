@@ -48,4 +48,11 @@ $(document).ready(function() {
             $("#profileButton").attr("disabled", true).css('opacity', 0.5);
         }
     })
+
+    $('#toast').toast('show');
+
+    $("#modalBtn").click(function () {
+        $("#target").submit();
+    })
+
 });
